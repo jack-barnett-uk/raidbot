@@ -1,0 +1,10 @@
+{
+    "Debug": false,
+    "FFXIVToolkit": {
+        "FCLodestoneID": "",
+        "Token": ""
+    },
+    "Discord": {
+        "BotToken": ""
+    }
+}
