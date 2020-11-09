@@ -19,12 +19,19 @@ func main() {
 
 	// Get some details from the config
 	ffxivToolkitToken := viper.GetString("FFXIVToolkit.Token")
-	defaultLodestoneID := viper.GetString("FFXIVToolkit.FCLodestoneID")
+	//defaultLodestoneID := viper.GetString("FFXIVToolkit.FCLodestoneID")
 
-	// get fc details
 	client = ffxivtoolkit.New(ffxivToolkitToken)
-	logDetails(defaultLodestoneID)
-	logMembers(defaultLodestoneID)
+
+	group2, err := client.Group.Get("TestGroup2")
+
+	if err != nil {
+		log.Println("Unable to find group to edit")
+		return
+	}
+
+	group2.Description = "Jack 2nd Test Group"
+	group2 = client.Group.Update(group2)
 
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
